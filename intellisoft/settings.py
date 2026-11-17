@@ -17,11 +17,17 @@ SECRET_KEY = os.environ.get(
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() in ('1', 'true', 'yes')
 
 ALLOWED_HOSTS = [
-    h.strip() for h in os.environ.get('DJANGO_ALLOWED_HOSTS', '*').split(',') if h.strip()
+    h.strip() for h in os.environ.get(
+        'DJANGO_ALLOWED_HOSTS',
+        'intellisoft.pythonanywhere.com,127.0.0.1,localhost'
+    ).split(',') if h.strip()
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    o.strip() for o in os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', '').split(',') if o.strip()
+    o.strip() for o in os.environ.get(
+        'DJANGO_CSRF_TRUSTED_ORIGINS',
+        'https://intellisoft.pythonanywhere.com'
+    ).split(',') if o.strip()
 ]
 
 INSTALLED_APPS = [

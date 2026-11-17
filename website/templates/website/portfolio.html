@@ -1,0 +1,85 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <p class="section-label fade-in">Our Work</p>
+        <h1 class="page-title fade-in">Selected Work</h1>
+        <p class="page-subtitle fade-in">
+            A selection of projects we've built for businesses and organizations.
+        </p>
+    </div>
+</section>
+
+<!-- Portfolio -->
+<section class="portfolio-full-section">
+    <div class="container">
+        <!-- Filter Tabs -->
+        <div class="portfolio-filters fade-in" id="portfolio-filters">
+            <button class="filter-btn active" data-filter="all" id="filter-all">All</button>
+            {% for value, label in categories %}
+            <button class="filter-btn" data-filter="{{ value }}" id="filter-{{ value }}">{{ label }}</button>
+            {% endfor %}
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="portfolio-grid" id="portfolio-grid">
+            {% for project in projects %}
+            <div class="portfolio-card fade-in" data-category="{{ project.category }}" id="portfolio-{{ project.slug }}">
+                <div class="portfolio-card-image">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy">
+                    {% else %}
+                    <div class="portfolio-card-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <span>{{ project.get_category_display }}</span>
+                    </div>
+                    {% endif %}
+                    <div class="portfolio-card-overlay">
+                        <span class="portfolio-category-badge">{{ project.get_category_display }}</span>
+                    </div>
+                </div>
+                <div class="portfolio-card-body">
+                    <h3 class="portfolio-card-title">{{ project.title }}</h3>
+                    <p class="portfolio-card-desc">{{ project.short_description }}</p>
+                    <div class="portfolio-card-tech">
+                        {% for tech in project.get_technologies_list %}
+                        <span class="tech-tag">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    {% if project.outcome %}
+                    <p class="portfolio-card-outcome">
+                        <strong>Outcome:</strong> {{ project.outcome }}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="empty-state fade-in">
+                <h3>Portfolio Coming Soon</h3>
+                <p>We're preparing our project showcase. Check back soon.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-inner fade-in">
+            <h2 class="cta-title">Have a Project in Mind?</h2>
+            <p class="cta-subtitle">
+                Let's discuss your idea and build something great together.
+            </p>
+            <a href="{% url 'contact' %}" class="btn btn-accent btn-lg">
+                Start Your Project
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

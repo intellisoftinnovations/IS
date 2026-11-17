@@ -1,0 +1,232 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <p class="section-label fade-in">About Us</p>
+        <h1 class="page-title fade-in">We Build With Purpose</h1>
+        <p class="page-subtitle fade-in">
+            IntelliSoft Innovations is a software-focused technology company
+            dedicated to creating useful, modern, and reliable digital solutions.
+        </p>
+    </div>
+</section>
+
+<!-- Story -->
+<section class="about-story-section">
+    <div class="container">
+        <div class="about-story fade-in">
+            <div class="about-story-content">
+                <h2 class="section-title">Our Story</h2>
+                <p>
+                    We combine software engineering, thoughtful design, and business
+                    understanding to turn ideas into digital products that people can
+                    actually use.
+                </p>
+                <p>
+                    Every business is different. That's why we focus on understanding
+                    your goals, users, and workflow before building a solution that fits.
+                    We don't believe every business should use the same template.
+                </p>
+                <p>
+                    We don't just build software. We build digital solutions designed
+                    to solve real business problems.
+                </p>
+            </div>
+            <div class="about-story-visual">
+                <div class="about-stat-grid">
+                    <div class="about-stat">
+                        <span class="about-stat-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </span>
+                        <span class="about-stat-label">Custom Development</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                        </span>
+                        <span class="about-stat-label">Modern Design</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </span>
+                        <span class="about-stat-label">Long-Term Support</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </span>
+                        <span class="about-stat-label">Client-Focused</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Leadership -->
+<section class="about-team-section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <p class="section-label">Leadership</p>
+            <h2 class="section-title">Meet Our Team</h2>
+        </div>
+
+        <!-- 1. Executive Founder & CEO Spotlight Card -->
+        {% for member in team_members %}
+        {% if 'ceo' in member.role|lower or 'founder' in member.role|lower %}
+        <div class="team-ceo-wrapper fade-in">
+            <div class="team-card-ceo" id="team-ceo">
+                <!-- Ambient Executive Glow Backdrop -->
+                <div class="ceo-ambient-glow"></div>
+
+                <div class="ceo-card-header">
+                    <span class="ceo-leadership-badge">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        Executive Leadership &bull; Founder
+                    </span>
+                </div>
+
+                <div class="ceo-card-content">
+                    <!-- CEO Avatar with Dual-Ring Orbital Glow -->
+                    <div class="ceo-avatar-frame">
+                        <div class="ceo-avatar-ring"></div>
+                        {% if member.image %}
+                        <img src="{{ member.image.url }}" alt="{{ member.name }}" class="ceo-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="ceo-avatar-placeholder" style="display:none;">
+                            <span>{{ member.name|slice:":2"|upper }}</span>
+                        </div>
+                        {% else %}
+                        <div class="ceo-avatar-placeholder">
+                            <span>{{ member.name|slice:":2"|upper }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Leader Identity & Details -->
+                    <div class="ceo-details">
+                        <h3 class="ceo-name">{{ member.name }}</h3>
+                        <p class="ceo-role-title">{{ member.role }} &bull; Principal Architect</p>
+                        <p class="ceo-bio-text">{{ member.bio }}</p>
+
+                        <!-- Strategic Focus Pillars -->
+                        <div class="ceo-focus-tags">
+                            <span class="ceo-tag">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                                Enterprise Architecture
+                            </span>
+                            <span class="ceo-tag">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                                Scalable Cloud Systems
+                            </span>
+                            <span class="ceo-tag">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                Product Strategy &amp; ROI
+                            </span>
+                        </div>
+
+                        <!-- Executive Connect Action -->
+                        <div class="ceo-connect-row">
+                            <a href="{% url 'contact' %}" class="btn btn-primary btn-sm">
+                                Schedule Consultation
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                            <a href="mailto:santunukaysarmahin@gmail.com" class="ceo-contact-link" title="Direct Email">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                santunukaysarmahin@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <!-- 2. Core Engineering & Technical Team Grid -->
+        <div class="team-members-header fade-in">
+            <h3 class="team-subheading">Engineering &amp; Design Leads</h3>
+            <p class="team-subdesc">Senior domain specialists executing end-to-end software delivery</p>
+        </div>
+
+        <div class="team-members-grid">
+            {% for member in team_members %}
+            {% if 'ceo' not in member.role|lower and 'founder' not in member.role|lower %}
+            <div class="team-card-member fade-in" id="team-{{ forloop.counter }}">
+                <!-- Department Badge -->
+                <div class="member-dept-header">
+                    {% if 'architect' in member.role|lower %}
+                    <span class="member-dept-badge dept-backend">Architecture &amp; Core Backend</span>
+                    {% elif 'design' in member.role|lower or 'ui' in member.role|lower %}
+                    <span class="member-dept-badge dept-design">UI/UX &amp; Design Systems</span>
+                    {% elif 'cloud' in member.role|lower or 'devops' in member.role|lower %}
+                    <span class="member-dept-badge dept-cloud">Cloud &amp; Site Reliability</span>
+                    {% else %}
+                    <span class="member-dept-badge dept-general">Engineering Lead</span>
+                    {% endif %}
+                </div>
+
+                <!-- Member Avatar -->
+                <div class="member-avatar-box">
+                    {% if member.image %}
+                    <img src="{{ member.image.url }}" alt="{{ member.name }}" loading="lazy" class="member-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="member-avatar-placeholder" style="display:none;">
+                        <span>{{ member.name|slice:":2"|upper }}</span>
+                    </div>
+                    {% else %}
+                    <div class="member-avatar-placeholder">
+                        <span>{{ member.name|slice:":2"|upper }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <h4 class="member-name">{{ member.name }}</h4>
+                <p class="member-role">{{ member.role }}</p>
+                <p class="member-bio">{{ member.bio }}</p>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="why-section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <p class="section-label">Why Us</p>
+            <h2 class="section-title">Why Choose IntelliSoft?</h2>
+        </div>
+
+        <div class="why-grid">
+            {% for reason in reasons %}
+            <div class="why-card fade-in">
+                <div class="why-card-number">{{ forloop.counter|stringformat:"02d" }}</div>
+                <h3 class="why-card-title">{{ reason.title }}</h3>
+                <p class="why-card-desc">{{ reason.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-inner fade-in">
+            <h2 class="cta-title">Let's Work Together</h2>
+            <p class="cta-subtitle">
+                Have a project in mind? We'd love to hear about it.
+            </p>
+            <a href="{% url 'contact' %}" class="btn btn-accent btn-lg">
+                Start Your Project
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

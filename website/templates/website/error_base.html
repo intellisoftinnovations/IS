@@ -1,0 +1,94 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="error-page-section">
+    <div class="container">
+        <div class="error-card-container fade-in">
+            <!-- Neumorphic Error Card -->
+            <div class="error-card">
+                <!-- Status Badge -->
+                <div class="error-badge-wrapper">
+                    <span class="error-status-badge badge-{{ error_code|default:'404' }}">
+                        <span class="status-indicator-dot"></span>
+                        HTTP {{ error_code|default:"404" }} &bull; {{ error_title|default:"Page Not Found" }}
+                    </span>
+                </div>
+
+                <!-- Giant Gradient Numeric Code -->
+                <h1 class="error-code-num">{{ error_code|default:"404" }}</h1>
+
+                <!-- Title & Description -->
+                <h2 class="error-heading">{{ error_title|default:"Page Not Found" }}</h2>
+                <p class="error-subtext">
+                    {{ error_message|default:"The page, resource, or endpoint you are looking for does not exist, has been removed, or is temporarily unavailable." }}
+                </p>
+
+                <!-- Route Telemetry Box -->
+                <div class="error-telemetry-box">
+                    <span class="telemetry-label">Attempted Path:</span>
+                    <code class="telemetry-path">{{ request.path }}</code>
+                </div>
+
+                <!-- Primary Action Buttons -->
+                <div class="error-action-btns">
+                    <a href="{% url 'home' %}" class="btn btn-primary btn-lg">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                        Back to Homepage
+                    </a>
+                    <a href="{% url 'services' %}" class="btn btn-accent btn-lg">
+                        Explore Services
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <a href="{% url 'contact' %}" class="btn btn-lg">
+                        Contact Support
+                    </a>
+                </div>
+
+                <!-- Helpful Quick Links Directory -->
+                <div class="error-quick-directory">
+                    <h3 class="directory-title">Or Navigate Directly To:</h3>
+                    <div class="directory-grid">
+                        <a href="{% url 'services' %}" class="directory-item">
+                            <div class="dir-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            </div>
+                            <div class="dir-text">
+                                <strong>Services &amp; Solutions</strong>
+                                <span>Web Apps, APIs, AI &amp; Cloud</span>
+                            </div>
+                        </a>
+                        <a href="{% url 'portfolio' %}" class="directory-item">
+                            <div class="dir-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                            </div>
+                            <div class="dir-text">
+                                <strong>Client Portfolio</strong>
+                                <span>Case studies &amp; deployed work</span>
+                            </div>
+                        </a>
+                        <a href="{% url 'process' %}" class="directory-item">
+                            <div class="dir-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            </div>
+                            <div class="dir-text">
+                                <strong>Our Process</strong>
+                                <span>Discover, build &amp; scale</span>
+                            </div>
+                        </a>
+                        <a href="{% url 'home' %}#project-estimator" class="directory-item">
+                            <div class="dir-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+                            </div>
+                            <div class="dir-text">
+                                <strong>Project Estimator</strong>
+                                <span>Instant scope &amp; cost calculator</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

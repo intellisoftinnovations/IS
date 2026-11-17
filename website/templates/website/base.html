@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title|default:"IntelliSoft Innovations — Technology Built Around Your Business" }}</title>
+    <meta name="description" content="{{ meta_description|default:'IntelliSoft Innovations creates professional websites, e-commerce platforms, custom software, and modern digital solutions designed around your business.' }}">
+    <meta name="keywords" content="software development, web development, e-commerce, custom software, UI UX design, business automation, AI solutions, IntelliSoft Innovations">
+    <meta name="author" content="IntelliSoft Innovations">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ page_title|default:'IntelliSoft Innovations' }}">
+    <meta property="og:description" content="{{ meta_description|default:'Technology Built Around Your Business.' }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="IntelliSoft Innovations">
+
+    <!-- Google Fonts — Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="{% static 'website/img/favicon.png' %}">
+    <link rel="shortcut icon" href="{% static 'website/img/favicon.ico' %}">
+
+    <!-- Prevent dark-mode flash before stylesheet loads -->
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('intellisoft-theme');
+                if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) {}
+        })();
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'website/css/styles.css' %}?v=3">
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-inner">
+            <a href="{% url 'home' %}" class="logo" id="logo" aria-label="IntelliSoft Innovations">
+                <img src="{% static 'website/img/logo-horizontal-dark.png' %}" alt="IntelliSoft Innovations" class="logo-img logo-img-dark" height="38">
+                <img src="{% static 'website/img/logo-horizontal-light.png' %}" alt="IntelliSoft Innovations" class="logo-img logo-img-light" height="38">
+            </a>
+
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="{% url 'services' %}" class="nav-link" id="nav-services">Services</a></li>
+                    <li><a href="{% url 'portfolio' %}" class="nav-link" id="nav-portfolio">Work</a></li>
+                    <li><a href="{% url 'about' %}" class="nav-link" id="nav-about">About</a></li>
+                    <li><a href="{% url 'process' %}" class="nav-link" id="nav-process">Process</a></li>
+                    <li><a href="{% url 'contact' %}" class="nav-link" id="nav-contact">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
+                    <a href="{% url 'contact' %}" class="btn btn-primary btn-sm" id="nav-cta">Start a Project</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <a href="{% url 'home' %}" class="logo footer-logo" aria-label="IntelliSoft Innovations">
+                        <img src="{% static 'website/img/logo-horizontal-dark.png' %}" alt="IntelliSoft Innovations" class="logo-img logo-img-dark" height="42">
+                        <img src="{% static 'website/img/logo-horizontal-light.png' %}" alt="IntelliSoft Innovations" class="logo-img logo-img-light" height="42">
+                    </a>
+                    <p class="footer-tagline">Technology. Innovation. Growth.</p>
+                    <p class="footer-description">
+                        We build practical digital solutions around your business.
+                    </p>
+                </div>
+
+                <!-- Navigation Column -->
+                <div class="footer-nav">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'services' %}">Services</a></li>
+                        <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services Column -->
+                <div class="footer-nav">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'services' %}">Website Development</a></li>
+                        <li><a href="{% url 'services' %}">E-Commerce</a></li>
+                        <li><a href="{% url 'services' %}">Custom Software</a></li>
+                        <li><a href="{% url 'services' %}">Web Applications</a></li>
+                        <li><a href="{% url 'services' %}">UI/UX Design</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div class="footer-contact">
+                    <h4 class="footer-heading">Get in Touch</h4>
+                    <ul class="footer-links">
+                        <li>
+                            <a href="mailto:santunukaysarmahin@gmail.com">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                santunukaysarmahin@gmail.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+8801631009941">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                +880 1631 009941
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/in/santunu-kaysar" target="_blank" rel="noopener">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                                LinkedIn
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 IntelliSoft Innovations. All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="https://linkedin.com/in/santunu-kaysar" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="Facebook">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="GitHub">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    </a>
+                    <a href="#" class="footer-social-link" aria-label="Instagram">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'website/js/main.js' %}?v=2"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

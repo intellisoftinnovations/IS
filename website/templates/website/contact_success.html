@@ -1,0 +1,27 @@
+{% extends "website/base.html" %}
+
+{% block content %}
+
+<section class="success-section">
+    <div class="container">
+        <div class="success-content fade-in">
+            <div class="success-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+            </div>
+            <h1 class="success-title">Thank You!</h1>
+            <p class="success-message">
+                Your project inquiry has been received. We'll review your details
+                and get back to you within 24 hours.
+            </p>
+            <div class="success-actions">
+                <a href="{% url 'home' %}" class="btn btn-primary btn-lg">Back to Home</a>
+                <a href="{% url 'portfolio' %}" class="btn btn-secondary btn-lg">View Our Work</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
